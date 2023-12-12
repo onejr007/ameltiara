@@ -11,6 +11,7 @@
             overflow: hidden;
             margin: 0;
             padding: 0;
+            background-color: #333; /* Warna latar belakang yang lebih gelap */
         }
 
         .letter-container {
@@ -43,7 +44,7 @@
         }
 
         audio {
-            width: 100%;
+            display: none; /* Sembunyikan kontrol pemutar audio */
         }
 
         #particles-js {
@@ -69,21 +70,17 @@
             Amel Tiara, aku mencintaimu lebih dari kata-kata dapat ungkapkan. Semoga kita terus membangun kenangan indah bersama. Aku beruntung memiliki kamu sebagai pasangan hidupku.<br><br>
 
             Dengan cinta sejati,
-            [Nama Anda]
+            Bagas Adi Pratama
         </div>
     </div>
 
     <div class="audio-container">
-        <audio id="background-music" controls autoplay loop>
-            <!-- Ganti "your-music-file.mp3" dengan URL atau path file musik Anda -->
-            <source src="your-music-file.mp3" type="audio/mpeg">
+        <audio id="background-music" autoplay loop>
+            <!-- Ganti "https://soundcloud.com/atlanticrecords/jason-mraz-im-yours" dengan URL trek SoundCloud Anda -->
+            <source src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/20718099&amp;color=%23ff5500&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-        <p>Enjoy the music: "I'm Yours - Acoustic"</p>
     </div>
-
-    <!-- Embed SoundCloud -->
-    <iframe width="0" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/20718099&amp;color=%23ff5500&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false"></iframe>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
