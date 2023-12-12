@@ -15,7 +15,7 @@
         }
 
         .letter-container {
-            background-color: #fff;
+            background-color: #f9ebca; /* Warna background yang menyerupai surat cinta */
             border: 1px solid #ddd;
             max-width: 800px;
             margin: 20px auto;
@@ -53,6 +53,62 @@
             height: 100%;
             z-index: -1;
         }
+
+        /* Animasi pada container */
+        .letter-container {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Partikel tanpa garis */
+        .particles-js-canvas-el {
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        /* Tombol Surprise */
+        .surprise-button {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ff5500;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .surprise-button:hover {
+            background-color: #e04400;
+        }
+
+        /* Popup Surprise */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .popup img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +138,16 @@
         </audio>
     </div>
 
+    <!-- Tombol Surprise -->
+    <button class="surprise-button" onclick="togglePopup()">Surprise!</button>
+
+    <!-- Popup Surprise -->
+    <div class="popup" id="surprisePopup">
+        <img src="https://www.funimada.com/assets/images/cards/big/love-19.gif" alt="Surprise Image">
+        <p>Surprise!</p>
+        <button onclick="togglePopup()">Close</button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         particlesJS('particles-js', {
@@ -95,6 +161,11 @@
             },
             interactivity: { detect_on: 'canvas', events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }, modes: { grab: { distance: 400, line_linked: { opacity: 1 } }, bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 }, repulse: { distance: 200 } } }
         });
+
+        function togglePopup() {
+            var popup = document.getElementById('surprisePopup');
+            popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>
