@@ -4,29 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cinta untuk Amel Tiara</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            text-align: center;
             background-color: #f9f9f9;
-            margin: 50px;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         h1 {
             color: #e74c3c;
+            font-size: 2em;
+            margin-bottom: 10px;
         }
 
         p {
             color: #3498db;
-            font-size: 18px;
+            font-size: 1.2em;
             line-height: 1.6;
             margin-top: 20px;
         }
 
         img {
-            width: 300px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             margin-top: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .btn-love {
+            background-color: #e74c3c;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-love:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
@@ -42,8 +79,22 @@
 
         Amel Tiara, aku mencintaimu lebih dari kata-kata dapat ungkapkan. Semoga kita terus membangun kenangan indah bersama. Aku beruntung memiliki kamu sebagai pasangan hidupku.<br><br>
 
-        Dengan cinta sejati, Bagas Adi Pratama
+        Dengan cinta sejati,
+        Bagas Adi Pratama
     </p>
-    <img src="https://placekitten.com/300/300" alt="Gambar Cinta">
+    <img src="https://placekitten.com/200/200" alt="Gambar Cinta">
+    <button class="btn-love" onclick="showLoveMessage()"><i class="fas fa-heart"></i> Sampaikan Cinta</button>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
+    <script>
+        function showLoveMessage() {
+            alert('Amel Tiara, aku mencintaimu lebih dari apapun di dunia ini!');
+        }
+    </script>
 </body>
 </html>
