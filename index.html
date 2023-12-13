@@ -371,7 +371,11 @@
 
   // Function to show the popup and play audio after a delay
   function showPopupAndPlayAudio() {
-    document.getElementById('background-audio').play();
+    var audio = document.getElementById('background-audio');
+    audio.play().catch(function(error) {
+      // Autoplay was prevented, you can handle it here.
+      console.error("Autoplay was prevented:", error);
+    });
   }
 
   setTimeout(showPopupAndPlayAudio, 1000);
