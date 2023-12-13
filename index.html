@@ -398,7 +398,7 @@ p{
       if (i % 2 === 0) {
         page.style.zIndex = pages.length - i;
       }
-      page.addEventListener('click', function () {
+      page.onclick = function () {
         if (this.classList.contains('flipped')) {
           this.classList.remove('flipped');
           if (this.nextElementSibling) {
@@ -410,7 +410,7 @@ p{
             this.nextElementSibling.classList.add('flipped');
           }
         }
-      });
+      };
     }
   </script>
 
