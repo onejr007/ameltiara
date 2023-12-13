@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -167,5 +167,54 @@
             popup.style.display = (popup.style.display === 'none' || popup.style.display === '') ? 'block' : 'none';
         }
     </script>
+</body>
+</html>
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Screen Image Popup</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #popup-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #popup-image {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="popup-container">
+    <img id="popup-image" src="https://awsimages.detik.net.id/community/media/visual/2023/02/20/penampakan-kuntilanak-foto-istimewa-6_169.jpeg?w=1200" alt="Popup Image">
+  </div>
+
+  <script>
+    // Function to show the popup after a delay
+    function showPopup() {
+      document.getElementById('popup-container').style.display = 'flex';
+    }
+
+    // Set a delay of 3 seconds (3000 milliseconds)
+    setTimeout(showPopup, 3000);
+  </script>
+
 </body>
 </html>
