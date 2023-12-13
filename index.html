@@ -262,6 +262,35 @@
     .page:nth-child(odd) {
       background-position: right top;
     }
+    
+    
+    @media only screen and (max-width: 768px) {
+      /* Mobile styles go here */
+      .content img {
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .page {
+        width: 90vw;
+        height: 60vw;
+        margin-bottom: 1em;
+      }
+
+      .book .pages {
+        width: 100vw;
+        height: 60vw;
+      }
+
+      .book .page {
+        width: 90vw;
+        height: 60vw;
+      }
+
+      .overlay {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -342,37 +371,29 @@
 </div>
 
 <script>
-    var pages = document.getElementsByClassName('page');
-    for(var i = 0; i < pages.length; i++)
-      {
-        var page = pages[i];
-        if (i % 2 === 0)
-          {
-            page.style.zIndex = (pages.length - i);
-          }
-      }
-  
-    document.addEventListener('DOMContentLoaded', function(){
-      for(var i = 0; i < pages.length; i++)
-        {
-          //Or var page = pages[i];
-          pages[i].pageNum = i + 1;
-          pages[i].onclick=function()
-            {
-              if (this.pageNum % 2 === 0)
-                {
-                  this.classList.remove('flipped');
-                  this.previousElementSibling.classList.remove('flipped');
-                }
-              else
-                {
-                  this.classList.add('flipped');
-                  this.nextElementSibling.classList.add('flipped');
-                }
-             }
-          }
-    })
-  
+  var pages = document.getElementsByClassName('page');
+  for(var i = 0; i < pages.length; i++) {
+    var page = pages[i];
+    if (i % 2 === 0) {
+      page.style.zIndex = (pages.length - i);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function(){
+    for(var i = 0; i < pages.length; i++) {
+      pages[i].pageNum = i + 1;
+      pages[i].onclick = function() {
+        if (this.pageNum % 2 === 0) {
+          this.classList.remove('flipped');
+          this.previousElementSibling.classList.remove('flipped');
+        } else {
+          this.classList.add('flipped');
+          this.nextElementSibling.classList.add('flipped');
+        }
+      };
+    }
+  });
+
   function toggleCurtain() {
     var curtainBody = document.querySelector(".curtainBody");
     curtainBody.classList.add("clicked");
@@ -380,27 +401,23 @@
     showPopupAndPlayAudio();
   }
 
-function slide() {
-  var curtainContainers = document.getElementsByClassName("curtainContainer");
-  curtainContainers[0].style.transform = "translatex(-150vw) ";
-  curtainContainers[1].style.transform = "translatex(150vw)";
+  function slide() {
+    var curtainContainers = document.getElementsByClassName("curtainContainer");
+    curtainContainers[0].style.transform = "translatex(-150vw) ";
+    curtainContainers[1].style.transform = "translatex(150vw)";
 
-  // Add an event listener to the first curtainContainer to detect when the transition ends
-  curtainContainers[0].addEventListener("transitionend", onTransitionEnd);
-}
+    curtainContainers[0].addEventListener("transitionend", onTransitionEnd);
+  }
 
+  function onTransitionEnd() {
+    var curtainBody = document.querySelector(".curtainBody");
+    curtainBody.parentNode.removeChild(curtainBody);
+  }
 
-function onTransitionEnd() {
-  // This function will be called when the transition ends
-  // Remove the curtainBody after the transition ends
-  var curtainBody = document.querySelector(".curtainBody");
-  curtainBody.parentNode.removeChild(curtainBody);
-}
-
-function showPopupAndPlayAudio() {
-  document.getElementById('background-audio').play();
-  setTimeout(500);
-}
+  function showPopupAndPlayAudio() {
+    document.getElementById('background-audio').play();
+    setTimeout(500);
+  }
 </script>
 </body>
 </html>
