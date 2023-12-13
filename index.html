@@ -342,26 +342,37 @@
 </div>
 
 <script>
-  var pages = document.querySelectorAll('.page:nth-child(odd)');
-
-  pages.forEach(function (page) {
-    page.addEventListener('click', function () {
-      if (!this.classList.contains('flipped')) {
-        this.classList.add('flipped');
-        var nextSibling = this.nextElementSibling;
-        if (nextSibling) {
-          nextSibling.classList.add('flipped');
-        }
-      } else {
-        this.classList.remove('flipped');
-        var nextSibling = this.nextElementSibling;
-        if (nextSibling) {
-          nextSibling.classList.remove('flipped');
-        }
+    var pages = document.getElementsByClassName('page');
+    for(var i = 0; i < pages.length; i++)
+      {
+        var page = pages[i];
+        if (i % 2 === 0)
+          {
+            page.style.zIndex = (pages.length - i);
+          }
       }
-    });
-  });
-
+  
+    document.addEventListener('DOMContentLoaded', function(){
+      for(var i = 0; i < pages.length; i++)
+        {
+          //Or var page = pages[i];
+          pages[i].pageNum = i + 1;
+          pages[i].onclick=function()
+            {
+              if (this.pageNum % 2 === 0)
+                {
+                  this.classList.remove('flipped');
+                  this.previousElementSibling.classList.remove('flipped');
+                }
+              else
+                {
+                  this.classList.add('flipped');
+                  this.nextElementSibling.classList.add('flipped');
+                }
+             }
+          }
+    })
+  
   function toggleCurtain() {
     var curtainBody = document.querySelector(".curtainBody");
     curtainBody.classList.add("clicked");
@@ -386,7 +397,11 @@ function onTransitionEnd() {
   curtainBody.parentNode.removeChild(curtainBody);
 }
 
+function showPopupAndPlayAudio() {
   document.getElementById('background-audio').play();
+  // Set a delay to remove the curtainBody after 3 seconds (adjust as needed)
+  setTimeout(removeCurtainBody, 1000);
+}
 </script>
 </body>
 </html>
