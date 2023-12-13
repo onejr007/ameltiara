@@ -364,32 +364,29 @@
 
   function toggleCurtain() {
     var curtainBody = document.querySelector(".curtainBody");
-
-    if (!curtainBody.classList.contains("clicked")) {
-      curtainBody.classList.add("clicked");
-      slide();
-      showPopupAndPlayAudio();
-    }
+    curtainBody.classList.add("clicked");
+    slide();
+    showPopupAndPlayAudio();
   }
 
-  function slide() {
-    document.getElementsByClassName("curtainContainer")[0].style.transform =
-      "translatex(-150vw)";
-    document.getElementsByClassName("curtainContainer")[1].style.transform =
-      "translatex(150vw)";
-  }
+function slide() {
+  var curtainContainers = document.getElementsByClassName("curtainContainer");
+  curtainContainers[0].style.transform = "translatex(-150vw) ";
+  curtainContainers[1].style.transform = "translatex(150vw)";
 
-  // Function to show the popup and play audio after a delay
-  function showPopupAndPlayAudio() {
-    var audio = document.getElementById('background-audio');
-    audio.play().catch(function(error) {
-      // Autoplay was prevented, you can handle it here.
-      console.error("Autoplay was prevented:", error);
-    });
-  }
+  // Add an event listener to the first curtainContainer to detect when the transition ends
+  curtainContainers[0].addEventListener("transitionend", onTransitionEnd);
+}
 
-  // Set a delay of 3 seconds (3000 milliseconds)
-  setTimeout(showPopupAndPlayAudio, 3000);
+
+function onTransitionEnd() {
+  // This function will be called when the transition ends
+  // Remove the curtainBody after the transition ends
+  var curtainBody = document.querySelector(".curtainBody");
+  curtainBody.parentNode.removeChild(curtainBody);
+}
+
+  document.getElementById('background-audio').play();
 </script>
 </body>
 </html>
