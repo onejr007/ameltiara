@@ -22,7 +22,6 @@
       height: 100vh;
       width: 100vw;
       color: black;
-      overflow: hidden;
     }
     .content img {
       width: 100%;
@@ -172,7 +171,6 @@
       margin-bottom: 0.5em;
       background: left top no-repeat;
       background-size: cover;
-      transition: transform 1.4s;
     }
     .page:nth-child(even) {
       clear: both;
@@ -184,7 +182,6 @@
       transform-style: preserve-3d;
       backface-visibility: hidden;
       border-radius: 4px;
-      transition: transform 1.4s;
     }
     .book .page {
       float: none;
@@ -195,6 +192,7 @@
       width: 100vw;
       height: 100vh;
       transform-origin: 0 0;
+      transition: transform 1.4s;
       backface-visibility: hidden;
       transform-style: preserve-3d;
       cursor: pointer;
