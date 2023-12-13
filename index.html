@@ -339,16 +339,20 @@
   </div>
   <div class="overlay"></div>
 </div>
+
 <script>
   var pages = document.querySelectorAll('.page:nth-child(odd)');
 
   pages.forEach(function (page) {
     page.addEventListener('click', function () {
-      this.classList.toggle('flipped');
-      var nextSibling = this.nextElementSibling;
-      if (nextSibling) {
-        nextSibling.classList.toggle('flipped');
-      }
+      var self = this;
+      setTimeout(function () {
+        self.classList.toggle('flipped');
+        var nextSibling = self.nextElementSibling;
+        if (nextSibling) {
+          nextSibling.classList.toggle('flipped');
+        }
+      }, 100); // Add a small delay to allow the transition to complete
     });
   });
 
@@ -378,7 +382,8 @@
     });
   }
 
-  setTimeout(showPopupAndPlayAudio, 1000);
+  // Set a delay of 3 seconds (3000 milliseconds)
+  setTimeout(showPopupAndPlayAudio, 3000);
 </script>
 </body>
 </html>
