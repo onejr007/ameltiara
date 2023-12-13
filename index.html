@@ -398,26 +398,20 @@ p{
       if (i % 2 === 0) {
         page.style.zIndex = pages.length - i;
       }
-    }
-  
-    document.addEventListener('DOMContentLoaded', function () {
-      for (var i = 0; i < pages.length; i++) {
-        pages[i].pageNum = i + 1;
-        pages[i].addEventListener('click', function () {
-          if (this.pageNum % 2 === 0) {
-            this.classList.remove('flipped');
-            if (this.nextElementSibling) {
-              this.nextElementSibling.classList.remove('flipped');
-            }
-          } else {
-            this.classList.add('flipped');
-            if (this.nextElementSibling) {
-              this.nextElementSibling.classList.add('flipped');
-            }
+      page.addEventListener('click', function () {
+        if (this.classList.contains('flipped')) {
+          this.classList.remove('flipped');
+          if (this.nextElementSibling) {
+            this.nextElementSibling.classList.remove('flipped');
           }
-        });
-      }
-    });
+        } else {
+          this.classList.add('flipped');
+          if (this.nextElementSibling) {
+            this.nextElementSibling.classList.add('flipped');
+          }
+        }
+      });
+    }
   </script>
 
 </body>
