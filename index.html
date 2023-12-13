@@ -6,68 +6,36 @@
   <title>Full Screen Image Popup with Background Audio</title>
   <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
   <style>
-    body {
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-    }
-
-    .content {
-      display: block;
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      color: black;
-    }
-
-    .content img {
-      width: 100%;
-    }
-
-    .curtainContainer {
-      position: absolute;
-      display: flex;
-      top: -10%;
-      width: 100%;
-      height: 110%;
-      margin: auto;
-      transform-style: preserve-3d;
-      overflow: hidden;
-      transition: transform 6s ease;
-    }
-
+    *,* :before,*:after { box-sizing: border-box;}
+    body {padding: 0;margin: 0;overflow: hidden;}
+    .content { display: block; position: absolute; height: 100%; width: 100%; color: black; }
+    .content img { width: 100%; }
+    .curtainContainer { position: absolute;display: flex;top: -10%;width: 100%;height: 110%;margin: auto;transform-style: preserve-3d;overflow: hidden;transition: transform 6s ease;}
     .curtainContainer:nth-child(1) {
       transform-origin: -120% top;
       justify-content: flex-start;
       transform: translatex(-5vw);
     }
-
     .curtainContainer:nth-child(2) {
       transform-origin: 120% top;
       justify-content: flex-end;
       transform: translatex(15vw);
     }
-
     .rollLeft {
       transform: translatex(-150vw) scaleX(0);
     }
-
     .rollRight {
       transform: translatex(150vw) scaleX(0);
     }
-
     .curtainBody:not(.clicked) .curtainContainer {
       transform: translatex(0) scaleX(1);
     }
-
     .curtainBody.clicked .curtainContainer:nth-child(1) {
       transform: translatex(-150vw) scaleX(0);
     }
-
     .curtainBody.clicked .curtainContainer:nth-child(2) {
       transform: translatex(150vw) scaleX(0);
     }
-
     .unCurtain {
       display: inline-block;
       width: 15vw;
@@ -81,13 +49,11 @@
       transition: transform 4s ease;
       animation: swing 2s ease infinite;
     }
-
     @keyframes swing {
       50% {
         transform: rotate(-3deg);
       }
     }
-
     .unCurtain:nth-child(2) {
       margin-left: -10vw;
       animation-delay: -0.1s;
@@ -97,12 +63,10 @@
       margin-left: -10vw;
       animation-delay: -0.2s;
     }
-
     .unCurtain:nth-child(4) {
       margin-left: -10vw;
       animation-delay: -0.3s;
     }
-
     .unCurtain:nth-child(5) {
       margin-left: -10vw;
       animation-delay: -0.4s;
@@ -117,41 +81,34 @@
       margin-left: -10vw;
       animation-delay: -0.6s;
     }
-
     .unCurtain:nth-child(8) {
       margin-left: -10vw;
       animation-delay: -0.7s;
     }
-
     .unCurtain:nth-child(9) {
       margin-left: -10vw;
       animation-delay: -0.8s;
     }
-
     .unCurtain:nth-child(10) {
       margin-left: -10vw;
       animation-delay: -0.9s;
     }
-
     .unCurtain:nth-child(11) {
       margin-left: -10vw;
       animation-delay: -1s;
     }
-
     .unCurtain:nth-child(12) {
       width: 10vw;
       background: repeating-linear-gradient(to left, #dd3232 4vw, #911818 8vw, #ec8989 10vw);
       margin-left: -10vw;
       animation-delay: -1.1s;
     }
-
     .curtainBody {
       display: block;
       position: absolute;
       width: 100%;
       height: 100%;
     }
-
     .overlay {
       display: block;
       position: absolute;
@@ -163,17 +120,9 @@
       background: linear-gradient(to top, rgba(2, 2, 2, 0) 0vh, #000 100vh);
       transition: opacity 3s ease;
     }
-
-    .curtainBody.clicked .overlay {
-      opacity: 0;
-    }
-
-    audio {
-      display: none; /* Hide the audio player */
-    }
-    .book {
-  transition: opacity 0.4s 0.2s;
-}
+    .curtainBody.clicked .overlay { opacity: 0; }
+     audio { display: none; }
+    .book { transition: opacity 0.4s 0.2s; }
 p{
   margin-top: 8vw;
   text-align: center;
@@ -189,12 +138,8 @@ p{
   background: left top no-repeat;
   background-size: cover;
 }
-.page:nth-child(even) {
-  clear: both;
-}
-.book {
-  perspective: 250vw;
-}
+.page:nth-child(even) { clear: both; }
+.book { perspective: 250vw; }
 .book .pages {
   width: 60vw;
   height: 44vw;
@@ -281,11 +226,6 @@ p{
 }
 .book .page.flipped:nth-child(even):before {
   background: rgba(0, 0, 0, 0);
-}
-*,
-* :before,
-*:after {
-  box-sizing: border-box;
 }
 .page:nth-child(odd){
   background-position: right top;
@@ -392,26 +332,20 @@ p{
     // Set a delay of 3 seconds (3000 milliseconds)
     setTimeout(showPopupAndPlayAudio, 3000);
   
-    var pages = document.getElementsByClassName('page');
-    for (var i = 0; i < pages.length; i++) {
-      var page = pages[i];
-      if (i % 2 === 0) {
-        page.style.zIndex = pages.length - i;
-      }
-      page.onclick = function () {
-        if (this.classList.contains('flipped')) {
-          this.classList.remove('flipped');
-          if (this.nextElementSibling) {
-            this.nextElementSibling.classList.remove('flipped');
-          }
-        } else {
-          this.classList.add('flipped');
-          if (this.nextElementSibling) {
-            this.nextElementSibling.classList.add('flipped');
-          }
+    var openMe = document.querySelector('.page:nth-child(odd)');
+    openMe.onclick = function () {
+      if (this.classList.contains('flipped')) {
+        this.classList.remove('flipped');
+        if (this.nextElementSibling) {
+          this.nextElementSibling.classList.remove('flipped');
         }
-      };
-    }
+      } else {
+        this.classList.add('flipped');
+        if (this.nextElementSibling) {
+          this.nextElementSibling.classList.add('flipped');
+        }
+      }
+    };
   </script>
 
 </body>
