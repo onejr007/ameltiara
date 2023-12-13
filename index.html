@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Full Screen Image Popup with Background Audio</title>
   <link href="https://fonts.googleapis.com/css?family=Lovers+Quarrel" rel="stylesheet">
-  <style>*, *:before, *:after {
+  <style>
+  *, *:before, *:after {
   box-sizing: border-box;
 }
 
@@ -152,6 +153,7 @@ body {
   animation-delay: -1.1s;
 }
 
+
 .curtainBody {
   display: block;
   position: absolute;
@@ -175,7 +177,7 @@ body {
   display: none; /* Hide the overlay after it's clicked */
 }
 
-audio {
+.audio {
   display: none;
 }
 
@@ -184,6 +186,9 @@ audio {
   perspective: 250vw;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .p {
@@ -201,112 +206,70 @@ audio {
   margin-bottom: 0.5em;
   background: left top no-repeat;
   background-size: cover;
-}
-
-.page:nth-child(even) {
-  clear: both;
-}
-
-.book .pages {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-  border-radius: 4px;
-}
-
-.book .page {
-  float: none;
-  clear: none;
-  margin: 0;
   position: absolute;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  left: 0;
   transform-origin: 0 0;
   transition: transform 1.4s;
   backface-visibility: hidden;
-  transform-style: preserve-3d;
   cursor: pointer;
   user-select: none;
-  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
 }
 
-.book .page:before {
-  content: '';
+.page p {
+  text-align: center;
+  font-size: 5vw;
+  color: #ffffff; /* Adjust text color as needed */
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page.prev, .page.next {
+  pointer-events: all;
   position: absolute;
   top: 0;
   bottom: 0;
+  width: 10vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  color: #ffffff; /* Adjust text color as needed */
+  transition: transform 0.5s;
+}
+
+.page.prev {
   left: 0;
+}
+
+.page.next {
   right: 0;
-  background: rgba(0, 0, 0, 0);
-  transition: background 0.7s;
-  z-index: 2;
 }
 
-.book .page:nth-child(odd) {
-  pointer-events: all;
-  transform: rotateY(0deg);
-  right: 0;
-  border-radius: 0 4px 4px 0;
-  background-image: linear-gradient(to right, rgba(0,0,0,.15) 0%, rgba(0,0,0,0) 10%);
+.page.prev:hover, .page.next:hover {
+  transform: scale(1.2);
 }
 
-.book .page:nth-child(odd):hover {
-  transform: rotateY(-15deg);
+.page.prev img, .page.next img {
+  width: 2em;
+  height: 2em;
 }
 
-.book .page:nth-child(odd):hover:before {
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.book .page:nth-child(odd):before {
-  background: rgba(0, 0, 0, 0);
-}
-
-.book .page:nth-child(even) {
+.page.flipped.prev, .page.flipped.next {
   pointer-events: none;
-  transform: rotateY(180deg);
-  transform-origin: 100% 0;
-  left: 0;
-  border-radius: 4px 0 0 4px;
-  border-color: black;
-  background-image: linear-gradient(to left, rgba(0,0,0,.12) 0%, rgba(0,0,0,0) 10%);
 }
 
-.book .page:nth-child(even):before {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.book .page.grabbing {
-  transition: none;
-}
-
-.book .page.flipped:nth-child(odd) {
-  pointer-events: none;
-  transform: rotateY(-180deg);
-}
-
-.book .page.flipped:nth-child(odd):before {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.book .page.flipped:nth-child(even) {
-  pointer-events: all;
-  transform: rotateY(0deg);
-}
-
-.book .page.flipped:nth-child(even):hover {
-  transform: rotateY(15deg);
-}
-
-.book .page.flipped:nth-child(even):hover:before {
-  background: rgba(0, 0, 0, 0.03);
-}
-
-.book .page.flipped:nth-child(even):before {
-  background: rgba(0, 0, 0, 0);
+.page.flipped.prev:hover, .page.flipped.next:hover {
+  transform: none;
 }
 
 .page:nth-child(odd) {
