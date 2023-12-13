@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Screen Image Popup</title>
+  <title>Full Screen Image Popup with Background Audio</title>
   <style>
     body {
       margin: 0;
@@ -26,22 +26,32 @@
       max-width: 100%;
       max-height: 100%;
     }
+
+    audio {
+      display: none; /* Hide the audio player */
+    }
   </style>
 </head>
 <body>
+
+  <audio id="background-audio" loop>
+    <source src="k.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
 
   <div id="popup-container">
     <img id="popup-image" src="https://awsimages.detik.net.id/community/media/visual/2023/02/20/penampakan-kuntilanak-foto-istimewa-6_169.jpeg?w=1200" alt="Popup Image">
   </div>
 
   <script>
-    // Function to show the popup after a delay
-    function showPopup() {
+    // Function to show the popup and play audio after a delay
+    function showPopupAndPlayAudio() {
       document.getElementById('popup-container').style.display = 'flex';
+      document.getElementById('background-audio').play();
     }
 
     // Set a delay of 3 seconds (3000 milliseconds)
-    setTimeout(showPopup, 3000);
+    setTimeout(showPopupAndPlayAudio, 3000);
   </script>
 
 </body>
