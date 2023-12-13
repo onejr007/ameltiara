@@ -345,14 +345,19 @@
 
   pages.forEach(function (page) {
     page.addEventListener('click', function () {
-      var self = this;
-      setTimeout(function () {
-        self.classList.toggle('flipped');
-        var nextSibling = self.nextElementSibling;
+      if (!this.classList.contains('flipped')) {
+        this.classList.add('flipped');
+        var nextSibling = this.nextElementSibling;
         if (nextSibling) {
-          nextSibling.classList.toggle('flipped');
+          nextSibling.classList.add('flipped');
         }
-      }, 100); // Add a small delay to allow the transition to complete
+      } else {
+        this.classList.remove('flipped');
+        var nextSibling = this.nextElementSibling;
+        if (nextSibling) {
+          nextSibling.classList.remove('flipped');
+        }
+      }
     });
   });
 
