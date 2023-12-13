@@ -399,8 +399,12 @@ function onTransitionEnd() {
 
 function showPopupAndPlayAudio() {
   document.getElementById('background-audio').play();
-  // Set a delay to remove the curtainBody after 3 seconds (adjust as needed)
-  setTimeout(removeCurtainBody, 1000);
+  setTimeout(removeCurtainBody, 500);
+}
+  
+function removeCurtainBody() {
+  var curtainBody = document.querySelector(".curtainBody");
+  curtainBody.parentNode.removeChild(curtainBody);
 }
 </script>
 </body>
