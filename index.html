@@ -376,51 +376,48 @@ p{
       slide();
       showPopupAndPlayAudio();
     }
-
+  
     function slide() {
       document.getElementsByClassName("curtainContainer")[0].style.transform =
         "translatex(-150vw) ";
       document.getElementsByClassName("curtainContainer")[1].style.transform =
         "translatex(150vw)";
     }
-
+  
     // Function to show the popup and play audio after a delay
     function showPopupAndPlayAudio() {
       document.getElementById('background-audio').play();
     }
-
+  
     // Set a delay of 3 seconds (3000 milliseconds)
     setTimeout(showPopupAndPlayAudio, 3000);
-      var pages = document.getElementsByClassName('page');
-  for(var i = 0; i < pages.length; i++)
-    {
+  
+    var pages = document.getElementsByClassName('page');
+    for (var i = 0; i < pages.length; i++) {
       var page = pages[i];
-      if (i % 2 === 0)
-        {
-          page.style.zIndex = (pages.length - i);
-        }
+      if (i % 2 === 0) {
+        page.style.zIndex = pages.length - i;
+      }
     }
-
-  document.addEventListener('DOMContentLoaded', function(){
-    for(var i = 0; i < pages.length; i++)
-      {
-        //Or var page = pages[i];
+  
+    document.addEventListener('DOMContentLoaded', function () {
+      for (var i = 0; i < pages.length; i++) {
         pages[i].pageNum = i + 1;
-        pages[i].onclick=function()
-          {
-            if (this.pageNum % 2 === 0)
-              {
-                this.classList.remove('flipped');
-                this.previousElementSibling.classList.remove('flipped');
-              }
-            else
-              {
-                this.classList.add('flipped');
-                this.nextElementSibling.classList.add('flipped');
-              }
-           }
-        }
-  })
+        pages[i].addEventListener('click', function () {
+          if (this.pageNum % 2 === 0) {
+            this.classList.remove('flipped');
+            if (this.nextElementSibling) {
+              this.nextElementSibling.classList.remove('flipped');
+            }
+          } else {
+            this.classList.add('flipped');
+            if (this.nextElementSibling) {
+              this.nextElementSibling.classList.add('flipped');
+            }
+          }
+        });
+      }
+    });
   </script>
 
 </body>
