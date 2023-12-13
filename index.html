@@ -342,14 +342,18 @@
 
 <script>
   function toggleCurtain() {
-    document.querySelector(".curtainBody").classList.add("clicked");
-    slide();
-    showPopupAndPlayAudio();
+    var curtainBody = document.querySelector(".curtainBody");
+
+    if (!curtainBody.classList.contains("clicked")) {
+      curtainBody.classList.add("clicked");
+      slide();
+      showPopupAndPlayAudio();
+    }
   }
 
   function slide() {
     document.getElementsByClassName("curtainContainer")[0].style.transform =
-      "translatex(-150vw) ";
+      "translatex(-150vw)";
     document.getElementsByClassName("curtainContainer")[1].style.transform =
       "translatex(150vw)";
   }
@@ -359,23 +363,26 @@
     document.getElementById('background-audio').play();
   }
 
-  // Set a delay of 3 seconds (3000 milliseconds)
-  setTimeout(showPopupAndPlayAudio, 3000);
+  setTimeout(showPopupAndPlayAudio, 1000);
 
-  var openMe = document.querySelector('.page:nth-child(odd)');
-  openMe.onclick = function () {
-    if (this.classList.contains('flipped')) {
-      this.classList.remove('flipped');
-      if (this.nextElementSibling) {
-        this.nextElementSibling.classList.remove('flipped');
+  var pages = document.querySelectorAll('.page:nth-child(odd)');
+  pages.forEach(function (page) {
+    page.addEventListener('click', function () {
+      if (this.classList.contains('flipped')) {
+        this.classList.remove('flipped');
+        var nextSibling = this.nextElementSibling;
+        if (nextSibling) {
+          nextSibling.classList.remove('flipped');
+        }
+      } else {
+        this.classList.add('flipped');
+        var nextSibling = this.nextElementSibling;
+        if (nextSibling) {
+          nextSibling.classList.add('flipped');
+        }
       }
-    } else {
-      this.classList.add('flipped');
-      if (this.nextElementSibling) {
-        this.nextElementSibling.classList.add('flipped');
-      }
-    }
-  };
+    });
+  });
 </script>
 
 </body>
