@@ -339,64 +339,6 @@
   </div>
   <div class="overlay"></div>
 </div>
-
-<script>
-  function toggleCurtain() {
-    var curtainBody = document.querySelector(".curtainBody");
-
-    if (!curtainBody.classList.contains("clicked")) {
-      curtainBody.classList.add("clicked");
-      slide();
-      showPopupAndPlayAudio();
-    }
-  }
-
-  function slide() {
-    document.getElementsByClassName("curtainContainer")[0].style.transform =
-      "translatex(-150vw)";
-    document.getElementsByClassName("curtainContainer")[1].style.transform =
-      "translatex(150vw)";
-  }
-
-  // Function to show the popup and play audio after a delay
-  function showPopupAndPlayAudio() {
-    document.getElementById('background-audio').play();
-  }
-
-  // Set a delay of 3 seconds (3000 milliseconds)
-  setTimeout(showPopupAndPlayAudio, 3000);
-
-  var pages = document.querySelectorAll('.page:nth-child(odd)');
-  pages.forEach(function (page) {
-    page.addEventListener('click', function () {
-      if (this.classList.contains('flipped')) {
-        this.classList.remove('flipped');
-        var nextSibling = this.nextElementSibling;
-        if (nextSibling) {
-          nextSibling.classList.remove('flipped');
-        }
-      } else {
-        this.classList.add('flipped');
-        var nextSibling = this.nextElementSibling;
-        if (nextSibling) {
-          nextSibling.classList.add('flipped');
-        }
-      }
-    });
-  });
-</script>
-This modification ensures that the page flipping logic is correctly applied when clicking on the odd-numbered pages. The toggleCurtain() function is also updated to check whether the curtain has been clicked before applying the animation. Try implementing these changes, and let me know if it resolves the issue.
-
-
-
-
-User
-masih tidak bisa terbuka open me
-ChatGPT
-I apologize for any confusion. It looks like there might be an issue with the logic for flipping the pages. Let's try a simplified approach to handle the page flipping. Please replace the existing script section with the following:
-
-javascript
-Copy code
 <script>
   var pages = document.querySelectorAll('.page:nth-child(odd)');
 
@@ -434,6 +376,8 @@ Copy code
 
   setTimeout(showPopupAndPlayAudio, 1000);
 </script>
+</body>
+</html>
 
 </body>
 </html>
