@@ -143,9 +143,10 @@
       height: 100vh;
       background: linear-gradient(to top, rgba(2, 2, 2, 0) 0vh, #000 100vh);
       transition: opacity 3s ease;
+      opacity: 0; /* Initially transparent */
     }
     .curtainBody.clicked .overlay {
-      opacity: 0;
+      opacity: 1; /* Make it opaque when the curtain is clicked */
     }
     audio {
       display: none;
